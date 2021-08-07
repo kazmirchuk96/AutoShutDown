@@ -1,0 +1,15 @@
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.csproj.AssemblyReference.cache
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.Form1.resources
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.csproj.GenerateResource.cache
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.AssemblyInfoInputs.cache
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.AssemblyInfo.cs
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.csproj.CoreCompileInputs.cache
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.exe
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.deps.json
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.runtimeconfig.json
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.runtimeconfig.dev.json
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.dll
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3.1\AutoShutDown.pdb
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.dll
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.pdb
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.genruntimeconfig.cache
