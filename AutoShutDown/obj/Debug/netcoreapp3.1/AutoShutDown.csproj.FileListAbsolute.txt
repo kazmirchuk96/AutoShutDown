@@ -13,3 +13,4 @@ C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\bin\Debug\netcoreapp3
 C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.dll
 C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.pdb
 C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.genruntimeconfig.cache
+C:\Users\ikazm\Desktop\For files\AutoShutDown\AutoShutDown\obj\Debug\netcoreapp3.1\AutoShutDown.Form2.resources
