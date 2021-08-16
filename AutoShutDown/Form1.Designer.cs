@@ -61,7 +61,6 @@ namespace AutoShutDown
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(151, 28);
             this.comboBox.TabIndex = 3;
-            this.comboBox.SelectedItem = "30";
             // 
             // groupBox1
             // 
@@ -92,7 +91,6 @@ namespace AutoShutDown
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AutoShutDown";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
+using System.Linq;
 
 namespace AutoShutDown
 {
@@ -41,16 +42,9 @@ namespace AutoShutDown
 
         public Form1()
         {
-
             InitializeComponent();
-            if (File.Exists($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt"))
-            {
-                var sr = new StreamReader($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt");
-                RunApplication(sr.ReadLine());
-                sr.Close();
-                this.ShowInTaskbar = false;
-            }
-
+            comboBox.SelectedIndex = 0;
+            CheckingFile();//проверка наличия файла с записанным временем автовыключения и считывание значения
         }
         private static void TimerEventProcessor(Timer timer, string timeToShutDowm)
         {
@@ -75,9 +69,7 @@ namespace AutoShutDown
         private void btnStart_Click(object sender, EventArgs e)
         {
             RunApplication(this.comboBox.SelectedItem.ToString());
-            var sw = new StreamWriter($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt", false, System.Text.Encoding.Default);
-            sw.WriteLine(this.comboBox.SelectedItem);
-            sw.Close();
+            WritingTimeToFile(this.comboBox.SelectedItem.ToString());
         }
 
         public void RunApplication(string timeToShutDown)
@@ -86,13 +78,38 @@ namespace AutoShutDown
             timer.Interval = 1000;
             timer.Start();
             this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
             this.notifyIcon.Visible = true;
             this.notifyIcon.Text = this.Text;
             this.notifyIcon.BalloonTipTitle = "Приложение AutoShutDown запущено";
             this.notifyIcon.BalloonTipText = "Приложение запущено, добавлено в автозагрузку и будет работать в фоновом режиме";
             this.notifyIcon.ShowBalloonTip(100);
             this.Hide();
-            
+        }
+
+        public void CheckingFile()
+        {
+            if (File.Exists($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt"))
+            {
+                var sr = new StreamReader($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt");
+                string str = sr.ReadLine();//считываем время, через которое нужно выключить компьютер из файла
+                sr.Close();
+
+                if (str.All(char.IsDigit) == false || int.Parse(str) > 100)//если файл был вручную измене пользователем и там появлиилсь символы или изменено время, то по умолчани ставим время 30 минут
+                {
+                    str = "30";
+                    WritingTimeToFile(str);
+                }
+                RunApplication(str);
+                sr.Close();
+            }
+        }
+
+        public void WritingTimeToFile(string time)
+        {
+            var sw = new StreamWriter($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt", false, System.Text.Encoding.Default);
+            sw.WriteLine(time);
+            sw.Close();
         }
 
         
