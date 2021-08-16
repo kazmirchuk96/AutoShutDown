@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
+      "projectUniqueName": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown1\\AutoShutDown\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
       "projectName": "AutoShutDown",
-      "projectPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
+      "projectPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown1\\AutoShutDown\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
       "packagesPath": "C:\\Users\\ikazm\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\obj\\",
+      "outputPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown1\\AutoShutDown\\AutoShutDown\\AutoShutDown\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ikazm\\AppData\\Roaming\\NuGet\\NuGet.Config",

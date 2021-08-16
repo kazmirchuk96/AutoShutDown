@@ -52,10 +52,16 @@ namespace AutoShutDown
             // comboBox
             // 
             this.comboBox.FormattingEnabled = true;
+            this.comboBox.Items.AddRange(new object[] {
+            "30",
+            "45",
+            "60",
+            "90"});
             this.comboBox.Location = new System.Drawing.Point(80, 45);
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(151, 28);
             this.comboBox.TabIndex = 3;
+            this.comboBox.SelectedItem = "30";
             // 
             // groupBox1
             // 
@@ -82,9 +88,11 @@ namespace AutoShutDown
             this.Controls.Add(this.btnStart);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AutoShutDown";
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 

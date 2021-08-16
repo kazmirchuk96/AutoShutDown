@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace AutoShutDown
 {
@@ -40,9 +41,16 @@ namespace AutoShutDown
 
         public Form1()
         {
+
             InitializeComponent();
-            this.comboBox.Items.AddRange(new object[]{"2","30","45","60","90"});
-            this.comboBox.SelectedItem = "2";
+            if (File.Exists($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt"))
+            {
+                var sr = new StreamReader($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt");
+                RunApplication(sr.ReadLine());
+                sr.Close();
+                this.ShowInTaskbar = false;
+            }
+
         }
         private static void TimerEventProcessor(Timer timer, string timeToShutDowm)
         {
@@ -66,19 +74,28 @@ namespace AutoShutDown
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
-            timer.Tick += (sender, args) => TimerEventProcessor(timer, this.comboBox.SelectedItem.ToString());
+            RunApplication(this.comboBox.SelectedItem.ToString());
+            var sw = new StreamWriter($"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt", false, System.Text.Encoding.Default);
+            sw.WriteLine(this.comboBox.SelectedItem);
+            sw.Close();
+        }
+
+        public void RunApplication(string timeToShutDown)
+        {
+            timer.Tick += (sender, args) => TimerEventProcessor(timer, timeToShutDown);
             timer.Interval = 1000;
             timer.Start();
-
+            this.WindowState = FormWindowState.Minimized;
             this.notifyIcon.Visible = true;
             this.notifyIcon.Text = this.Text;
             this.notifyIcon.BalloonTipTitle = "Приложение AutoShutDown запущено";
             this.notifyIcon.BalloonTipText = "Приложение запущено, добавлено в автозагрузку и будет работать в фоновом режиме";
             this.notifyIcon.ShowBalloonTip(100);
             this.Hide();
+            
         }
 
+        
       
     }
 }
