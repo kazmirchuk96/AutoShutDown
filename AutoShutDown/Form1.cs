@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 
 namespace AutoShutDown
 {
@@ -45,19 +46,22 @@ namespace AutoShutDown
             InitializeComponent();
             comboBox.SelectedIndex = 0;
             CheckingFile();//проверка наличия файла с записанным временем автовыключения и считывание значения
+            TurnOffSettings(); //изменения времени перехода компьютера в спящий режим, режим гибернации, выключения монитора
+         
+            
+            
         }
-        private static void TimerEventProcessor(Timer timer, string timeToShutDowm)
+        private static void TimerEventProcessor(Timer timer, string timeToShutDown)
         {
-            if (GetLastInputTime() == int.Parse(timeToShutDowm)*60 - 60)//показываем предупреждающее сообщение за 3 минуты до выключения
+            if (GetLastInputTime() == int.Parse(timeToShutDown)*60 - 180)//показываем предупреждающее сообщение за 3 минуты до выключения
             {
                 var form2 = new Form2();
                 form2.Show();
             }
-            else if (GetLastInputTime() == int.Parse(timeToShutDowm)*60)
+            else if (GetLastInputTime() == int.Parse(timeToShutDown)*60)
             {
                 timer.Stop();
-                //Process.Start("cmd", "/c shutdown -s -f -t 00");
-                MessageBox.Show("комп выключается...");
+                Process.Start("cmd", "/c shutdown -s -f -t 00");
             }
         }
 
@@ -81,8 +85,8 @@ namespace AutoShutDown
             this.ShowInTaskbar = false;
             this.notifyIcon.Visible = true;
             this.notifyIcon.Text = this.Text;
-            this.notifyIcon.BalloonTipTitle = "Приложение AutoShutDown запущено";
-            this.notifyIcon.BalloonTipText = "Приложение запущено, добавлено в автозагрузку и будет работать в фоновом режиме";
+            this.notifyIcon.BalloonTipTitle = "Приложение ASD запущено";
+            this.notifyIcon.BalloonTipText = " ";
             this.notifyIcon.ShowBalloonTip(100);
             this.Hide();
         }
@@ -112,7 +116,14 @@ namespace AutoShutDown
             sw.Close();
         }
 
-        
-      
+        public void TurnOffSettings()
+        {
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change monitor-timeout-ac 5"));//Timeout to turn off the display (plugged in)
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change monitor-timeout-dc 5"));//Timeout to turn off the display (battery)
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change standby-timeout-ac 5"));//Timeout to go to sleep (plugged in)
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change standby-timeout-dc 5"));//Timeout to go to sleep (battery)
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change hibernate-timeout-ac 0"));//Timeout to go into hibernate (plugged in)
+            Process.Start(new ProcessStartInfo("cmd", "/C powercfg /change hibernate-timeout-dc 0")); //Timeout to go into hibernate(battery)
+        }
     }
 }
