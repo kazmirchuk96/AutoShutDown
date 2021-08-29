@@ -5,14 +5,13 @@ using System.IO;
 using System.Linq;
 using System.Diagnostics;
 using IWshRuntimeLibrary;
-using Shell32;
 using File = System.IO.File;
 
 namespace AutoShutDown
 {
     public partial class Form1 : Form
     {
-        private static readonly string filePath = $"C:\\Users\\{Environment.UserName}\\Documents\\asd.txt";
+        private static readonly string FilePath = $"C:\\Users\\{Environment.UserName}\\asd.txt";
         [StructLayout(LayoutKind.Sequential)]
         struct Lastinputinfo
         {
@@ -54,7 +53,7 @@ namespace AutoShutDown
         }
         private static void TimerEventProcessor(Timer timer, int timeToShutDown)
         {
-            if (GetLastInputTime() == timeToShutDown*60 - 180)//показываем предупреждающее сообщение за 3 минуты до выключения
+            if (GetLastInputTime() == timeToShutDown*60 - 300)//показываем предупреждающее сообщение за 5 минут до выключения
             {
                 var form2 = new Form2();
                 form2.Show();
@@ -62,7 +61,7 @@ namespace AutoShutDown
             else if (GetLastInputTime() == timeToShutDown*60)
             {
                 timer.Stop();
-                Process.Start("cmd", "/c shutdown -s -f -t 00");
+                Process.Start("cmd", "/c shutdown -s -f -t 00");//выключение компьютера
             }
         }
 
@@ -70,12 +69,13 @@ namespace AutoShutDown
         {
             RunApplication(int.Parse(this.comboBox.SelectedItem.ToString()),false);
             WritingTimeToFile(this.comboBox.SelectedItem.ToString());
-            CreateStartupFolderShortcut();
+            
         }
 
         public void RunApplication(int timeToShutDown, bool runFromAutoStart)
         {
             ChangeTurnOffSettings(timeToShutDown);
+            CreateShortcut("asd", Environment.GetFolderPath(Environment.SpecialFolder.Startup), @"C:\Program Files (x86)\ASD\AutoShutDown.exe");//добавление программы в автозагрузку
             timer.Tick += (sender, args) => TimerEventProcessor(timer, timeToShutDown);
             timer.Interval = 1000;
             timer.Start();
@@ -94,16 +94,16 @@ namespace AutoShutDown
 
         public void WritingTimeToFile(string time)
         {
-            var sw = new StreamWriter(filePath, false, System.Text.Encoding.Default);
+            var sw = new StreamWriter(FilePath, false, System.Text.Encoding.Default);
             sw.WriteLine(time);
             sw.Close();
         }
 
         private int ReadingFile()
         {
-            if (File.Exists(filePath))
+            if (File.Exists(FilePath))
             {
-                var sr = new StreamReader(filePath);
+                var sr = new StreamReader(FilePath);
                 string str = sr.ReadLine();//считываем время, через которое нужно выключить компьютер из файла
                 sr.Close();
 
@@ -115,7 +115,7 @@ namespace AutoShutDown
 
                 return int.Parse(str);
             }
-            return 0; //файл не существует
+            return 0;//файл не существует
         }
         public void ChangeTurnOffSettings(int timeToShutDown)//изменения времени перехода компьютера в спящий режим, режим гибернации, выключения монитора
         {
@@ -128,24 +128,13 @@ namespace AutoShutDown
         }
 
         //Creating a shortcut file in the Startup Folder
-        public void CreateStartupFolderShortcut()
+        public static void CreateShortcut(string shortcutName, string shortcutPath, string targetFileLocation)
         {
-            /*WshShellClass wshShell = new WshShellClass();
-            IWshRuntimeLibrary.IWshShortcut shortcut;
-            string startUpFolderPath =
-                Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-
-            // Create the shortcut
-            shortcut =
-                (IWshRuntimeLibrary.IWshShortcut)wshShell.CreateShortcut(
-                    startUpFolderPath + "\\" +
-                    Application.ProductName + ".lnk");
-
-            shortcut.TargetPath = Application.ExecutablePath;
-            shortcut.WorkingDirectory = Application.StartupPath;
-            shortcut.Description = "Launch ASD";
-            shortcut.Save();*/
-            
+            string shortcutLocation = System.IO.Path.Combine(shortcutPath, shortcutName + ".lnk");
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutLocation);
+            shortcut.TargetPath = targetFileLocation;// The path of the file that will launch when the shortcut is run;
+            shortcut.Save();// Save the shortcut
         }
     }   
 
