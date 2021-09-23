@@ -29,6 +29,7 @@ namespace AutoShutDown
         /// </summary>
         private void InitializeComponent()
         {
+            this.TopMost = true;
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();

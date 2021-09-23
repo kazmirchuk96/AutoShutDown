@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj": {}
+    "C:\\Users\\ikazm\\Desktop\\Для файлов1\\Ф\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj": {
+    "C:\\Users\\ikazm\\Desktop\\Для файлов1\\Ф\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
+        "projectUniqueName": "C:\\Users\\ikazm\\Desktop\\Для файлов1\\Ф\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
         "projectName": "AutoShutDown",
-        "projectPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
+        "projectPath": "C:\\Users\\ikazm\\Desktop\\Для файлов1\\Ф\\AutoShutDown\\AutoShutDown\\AutoShutDown.csproj",
         "packagesPath": "C:\\Users\\ikazm\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ikazm\\Desktop\\For files\\AutoShutDown\\AutoShutDown\\obj\\",
+        "outputPath": "C:\\Users\\ikazm\\Desktop\\Для файлов1\\Ф\\AutoShutDown\\AutoShutDown\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ikazm\\AppData\\Roaming\\NuGet\\NuGet.Config",
